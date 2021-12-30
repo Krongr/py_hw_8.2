@@ -26,7 +26,7 @@ class YaDiskUploader:
         return requests.get(upload_url, headers=headers, params=params).json()
 
     def upload_file_to_disk(self, local_file_path, filename, ya_disk_file_path):
-        href = self.get_upload_link(ya_disk_file_path).get("href", "")
+        href = self.get_upload_link(ya_disk_file_path).get("href")
         response = requests.put(href, data=open(local_file_path + filename, 'rb'))
         response.raise_for_status()
         if response.status_code:
